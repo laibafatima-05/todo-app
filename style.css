@@ -1,0 +1,112 @@
+body {
+    font-family:Georgia, serif;
+    background: linear-gradient(135deg, #e0e7ff, #f8fafc);
+    min-height: 100vh;
+    padding: 40px 15px;
+}
+.todo-container {
+    max-width: 550px;
+    margin: 50px auto;
+    background-color: white;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+h1 {
+    text-align: center;
+    color: #1e293b;
+    margin-bottom: 25px;
+}
+.input-section {
+    display: flex;
+    gap: 10px;
+}
+#taskInput {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+    outline: none;
+}
+#taskInput:focus {
+    border-color: #0d6efd;
+}
+#addBtn {
+    padding: 10px 22px;
+    background-color: #739ddb;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+}
+#addBtn:hover {
+    background-color: #0d469b;
+}
+#taskError {
+    color: red;
+    margin-top: 6px;
+    margin-bottom: 0;
+}
+#taskList {
+    padding: 0;
+    list-style: none;
+}
+#taskList li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 13px;
+    margin-top: 12px;
+    background-color: #f5f5f5;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+}
+#taskList li button {
+    padding: 7px 11px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+#taskList li button:first-of-type {
+    background-color: rgb(48, 48, 182);
+}
+#taskList li button:first-of-type:hover {
+    background-color: #0b3574;
+}
+#taskList li button:last-of-type {
+    background-color: red;
+    color: white;
+}
+#taskList > button {
+    display: block;
+    padding: 6px 15px;
+    margin-top: 10px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#taskList > button:hover {
+    background-color: #495057;
+}
+#undoContainer {
+    text-align: center;
+}
+
+#undoContainer button {
+    margin-top: 15px;
+    padding: 7px 18px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#undoContainer button:hover {
+    background-color: #495057;
+}
