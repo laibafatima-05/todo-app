@@ -3,7 +3,11 @@
 A responsive and user-friendly To-Do application built using HTML, CSS, Bootstrap, and Vanilla JavaScript.
 The application allows users to add, edit, delete, search, and manage their daily tasks easily.
 
-## Screenshots
+## 🔗 Live Demo
+
+https://todo-app-delta-tawny-60.vercel.app/
+
+## 📸 Screenshots
 
 <table>
    <tr>
@@ -27,7 +31,7 @@ The application allows users to add, edit, delete, search, and manage their dail
   </tr>
 </table>
 
-## Features
+## ✨Features
 
 * Add new tasks
 * Edit existing tasks
@@ -48,7 +52,7 @@ The application allows users to add, edit, delete, search, and manage their dail
 * Separate HTML, CSS, and JavaScript files
 
 
-## Technologies Used
+## 🛠️Technologies Used
 
 * HTML5
 * CSS3
@@ -56,6 +60,6 @@ The application allows users to add, edit, delete, search, and manage their dail
 * Vanilla JavaScript
 * LocalStorage
 
-## Author
+## 👩🏻‍💻Author
 
 Laiba Fatima
