@@ -8,28 +8,47 @@ let searchInput = document.getElementById("searchInput");
 let totalCount = document.getElementById("totalCount");
 let pendingCount = document.getElementById("pendingCount");
 let completedCount = document.getElementById("completedCount");
+let statusDropdown = document.getElementById("statusDropdown");
 
 let currentFilter = "all";
+let editingTaskId = null;
 
 addBtn.addEventListener("click", function () {
 
     let taskText = taskInput.value.trim();
 
     if (taskText === "") {
-        errorMessage.textContent = "Task is required";
+        errorMessage.textContent = "Task is required.";
         return;
     }
 
-     errorMessage.textContent = "";
+    errorMessage.textContent = "";
 
-        let task = {
+    if (editingTaskId !== null) {
+
+        let task = tasks.find(function (task) {
+            return task.id === editingTaskId;
+        });
+
+        task.title = taskText;
+
+        saveTasks();
+
+        editingTaskId = null;
+        taskInput.value = "";
+        addBtn.textContent = "Add Task";
+
+        displayTasks();
+
+        return;
+    }
+    let task = {
         id: Date.now(),
         title: taskText,
         completed: false
     };
 
-     tasks.push(task);
-
+    tasks.push(task);
     saveTasks();
 
     taskInput.value = "";
@@ -62,24 +81,23 @@ addBtn.addEventListener("click", function () {
 
         let taskDiv = document.createElement("div");
 
-        taskDiv.className = "task-item d-flex justify-content-between align-items-center flex-wrap gap-2";
+        taskDiv.className ="task-item d-flex justify-content-between align-items-center flex-wrap gap-2";
 
         taskDiv.innerHTML = `
             <span class="task-title ${task.completed ? "completed" : ""}" data-id="${task.id}">
                 ${task.title}
             </span>
       <div class="task-buttons">
+               <button class="btn btn-sm ${task.completed ? "btn-warning" : "btn-success"}"
+               onclick="toggleTask(${task.id})"> ${task.completed ? "Pending" : "Complete"}
+               </button>
 
-                <button class="btn btn-sm btn-success" onclick="toggleTask(${task.id})">
-                    ${task.completed ? "Pending" : "Complete"}
+                <button class="btn btn-sm edit-btn" onclick="editTask(${task.id})">
+                 <i class="fa-solid fa-pen-to-square"></i>
                 </button>
 
-                <button class="btn btn-sm btn-warning" onclick="editTask(${task.id})">
-                    Edit
-                </button>
-
-                <button class="btn btn-sm btn-danger" onclick="deleteTask(${task.id})">
-                    Delete
+                <button class="btn btn-sm delete-btn" onclick="deleteTask(${task.id})">
+                 <i class="fa-solid fa-trash"></i>
                 </button>
 
             </div>
@@ -105,7 +123,9 @@ function toggleTask(id) {
     displayTasks();
 }
 function deleteTask(id) {
+     let confirmDelete = confirm("Are you sure you want to delete this task?");
 
+    if (confirmDelete) {
     tasks = tasks.filter(function (task) {
         return task.id !== id;
     });
@@ -113,33 +133,21 @@ function deleteTask(id) {
     saveTasks();
     displayTasks();
 }
+}
 function editTask(id) {
 
     let task = tasks.find(function (task) {
         return task.id === id;
     });
-    
-    let taskElement = document.querySelector(`.task-title[data-id="${id}"]`);
 
-    taskElement.contentEditable = "true";
-    taskElement.focus();
+    taskInput.value = task.title;
 
-     taskElement.addEventListener("blur", function () {
+    editingTaskId = id;
 
-    let newTitle =  taskElement.textContent.trim();
+    addBtn.textContent = "Save Changes";
 
-    if (newTitle !== "") {
-
-        task.title = newTitle;
-
-        saveTasks();
-    }
-    
-        taskElement.contentEditable = "false";
-        displayTasks();
-    }, { once: true });
+    taskInput.focus();
 }
-
 searchInput.addEventListener("input", function () {
     displayTasks();
 });
@@ -152,6 +160,7 @@ filterButtons.forEach(function (button) {
 
         currentFilter = button.getAttribute("data-filter");
 
+        statusDropdown.textContent = button.textContent;
         displayTasks();
     });
 });
@@ -174,3 +183,7 @@ function saveTasks() {
 
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
+window.addEventListener("load", function () {
+    tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    displayTasks();
+});

@@ -14,34 +14,59 @@ h1 {
 /* Input */
 #taskInput,
 #searchInput {
-    border: 1px solid #d2c8be;
+    border: 1px solid #dfdddb;
     padding: 12px;
+    height: 35px;
 }
-
-#taskInput:focus,
-#searchInput:focus {
-    border-color: #3a45a5;
-    box-shadow: 0 0 0 0.2rem rgba(139, 111, 85, 0.15);
-}
-
 /* Add Button */
 #addBtn {
-    background-color: #3a45a5;
+    background-color: #5a64c2;
     border: none;
-    padding: 12px 22px;
+    padding: 7px 18px;
+    height: 35px;
+    text-align: center;
 }
 
 #addBtn:hover {
-    background-color: #0a116e;
+    background-color: #3139b1;
 }
-
+#taskInput:focus,
+#searchInput:focus {
+    border-color: #eceef0;
+    box-shadow: none;
+    outline: none;
+}
+#taskInput,
+#searchInput,
+#addBtn,
+.dropdown-toggle,
+.dropdown-item,
+.filter-btn {
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+}
+.dropdown-toggle,
+.dropdown-toggle:focus,
+.dropdown-toggle:active,
+.dropdown-toggle.show {
+    background-color: white !important;
+    color: black;
+    border-color: #dee2e6;
+    box-shadow: none;
+    border-radius: 10px;
+}
+.dropdown-menu {
+    border-radius: 10px;
+}
 /* Filter Buttons */
 .filter-btn {
-    border-radius: 20px;
+    background-color: white;
     padding: 7px 18px;
 }
 .filter-btn:hover {
-    color:white;
+    color:black;
+    background-color: #f1f1f1;
 }
 
 /* Counts */
@@ -54,7 +79,7 @@ h1 {
 .count-box {
     background: white;
     border-radius: 10px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
 }
 
 .row.text-center h6 {
@@ -98,7 +123,6 @@ h1 {
 }
 
 .completed {
-    text-decoration: line-through;
     color: green;
 }
 
@@ -119,3 +143,28 @@ h1 {
     display: block;
     margin-top: 5px;
 }
+.edit-btn {
+    border: none;
+    color: #0d6efd;
+    font-size: 20px;
+}
+.edit-btn:hover {
+    background-color: transparent;
+    border: none;
+    color: #436eaf;
+}
+
+.delete-btn {
+    background-color: transparent;
+    border: none;
+    color: rgb(236, 46, 46);
+    font-size: 20px;
+}
+.delete-btn:hover {
+    background-color:transparent;
+    color: rgb(201, 49, 49);
+}
+.todo-card {
+    min-height: 100%;
+}
+
